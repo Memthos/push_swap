@@ -51,8 +51,7 @@ make fclean
 make re
 ```
 
-**Execution**
-
+## Usage
 ```bash
 ./push_swap <list_of_integers>
 ```
