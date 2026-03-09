@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_sort.c                                        :+:      :+:    :+:   */
+/*   sort_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperrine <mperrine@student.42angouleme.f>  +#+  +:+       +#+        */
+/*   By: mperrine <mperrine@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 12:55:31 by mperrine          #+#    #+#             */
-/*   Updated: 2025/11/26 17:04:49 by mperrine         ###   ########.fr       */
+/*   Updated: 2026/03/09 12:01:42 by mperrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/push_swap.h"
+#include "../includes/push_swap.h"
 
-void	swap(t_stack **stack, const char *stack_name)
+void	swap(t_stack **stack, const char stack_name)
 {
 	int	tmp_nb;
 	int	tmp_idx;
@@ -25,10 +25,12 @@ void	swap(t_stack **stack, const char *stack_name)
 	(*stack)->idx = (*stack)->next->idx;
 	(*stack)->next->nb = tmp_nb;
 	(*stack)->next->idx = tmp_idx;
-	ft_printf("s%s\n", stack_name);
+	write(1, "s", 1);
+	write(1, &stack_name, 1);
+	write(1, "\n", 1);
 }
 
-void	push(t_stack **push, t_stack **pull, const char *stack_name)
+void	push(t_stack **push, t_stack **pull, const char stack_name)
 {
 	t_stack	*tmp;
 
@@ -36,20 +38,17 @@ void	push(t_stack **push, t_stack **pull, const char *stack_name)
 		return ;
 	tmp = *push;
 	*push = (*push)->next;
-	if (*push)
-		(*push)->prev = NULL;
 	if (!*pull)
 		tmp->next = NULL;
 	else
-	{
-		(*pull)->prev = tmp;
 		tmp->next = *pull;
-	}
 	*pull = tmp;
-	ft_printf("p%s\n", stack_name);
+	write(1, "p", 1);
+	write(1, &stack_name, 1);
+	write(1, "\n", 1);
 }
 
-void	rotate(t_stack **stack, const char *stack_name)
+void	rotate(t_stack **stack, const char stack_name)
 {
 	t_stack	*tmp;
 
@@ -57,24 +56,24 @@ void	rotate(t_stack **stack, const char *stack_name)
 		return ;
 	tmp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
 	tmp->next = NULL;
-	tmp->prev = get_last_elem(stack);
-	get_last_elem(stack)->next = tmp;
-	ft_printf("r%s\n", stack_name);
+	get_last_elem(*stack)->next = tmp;
+	write(1, "r", 1);
+	write(1, &stack_name, 1);
+	write(1, "\n", 1);
 }
 
-void	reverse_rotate(t_stack **stack, const char *stack_name)
+void	reverse_rotate(t_stack **stack, const char stack_name)
 {
 	t_stack	*tmp;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	tmp = get_last_elem(stack);
-	tmp->prev->next = NULL;
-	tmp->prev = NULL;
+	tmp = get_last_elem(*stack);
+	get_penultimate_elem(*stack)->next = NULL;
 	tmp->next = *stack;
-	(*stack)->prev = tmp;
 	*stack = tmp;
-	ft_printf("rr%s\n", stack_name);
+	write(1, "rr", 2);
+	write(1, &stack_name, 1);
+	write(1, "\n", 1);
 }

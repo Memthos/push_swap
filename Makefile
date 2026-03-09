@@ -1,31 +1,39 @@
-FT_PRINTF_DIR=libs/ft_printf/
-FT_PRINTF=$(addprefix $(FT_PRINTF_DIR), libftprintf.a)
-SRCS_DIR=sources/
-SRCS=$(addprefix $(SRCS_DIR), push_swap.c sort_normal.c sort_small.c sort_functions.c sort_utils.c stack_utils_01.c stack_utils_02.c)
-OBJS=$(SRCS:.c=.o)
-CFLAGS=-Werror -Wall -Wextra
-CC=cc
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra
+VPATH=srcs/
+SRCS=parser_utils.c push_swap.c sort_functions.c stack_operations.c \
+	stack_utils.c
+OBJS_DIR=objs/
+OBJS=$(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 NAME=push_swap
+BONUS=checker
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(FT_PRINTF)
-	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(LIBS) -o $@ $^
+	@echo "Finished compiling push_swap"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+bonus: $(BONUS)
 
-$(FT_PRINTF):
-	make -s -C $(FT_PRINTF_DIR)
+$(BONUS):
+	@echo "Finished compiling checker"
+
+$(OBJS_DIR)%.o: %.c | $(OBJS_DIR)
+	@$(CC) $(CFLAGS) -o $@ -c $<
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 clean:
-	rm -f $(OBJS)
-	make clean -s -C $(FT_PRINTF_DIR)
+	@rm -drf $(OBJS_DIR)
+	@echo "Cleaned push_swap object files"
 
 fclean: clean
-	rm -rf $(NAME)
-	make fclean -s -C $(FT_PRINTF_DIR)
+	@rm -f $(NAME)
+	@rm -f $(BONUS)
+	@echo Cleaned push_swap
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
