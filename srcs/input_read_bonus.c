@@ -6,7 +6,7 @@
 /*   By: mperrine <mperrine@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:38:35 by mperrine          #+#    #+#             */
-/*   Updated: 2026/03/09 13:22:18 by mperrine         ###   ########.fr       */
+/*   Updated: 2026/03/09 13:38:57 by mperrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	read_input(t_stack **stack_a, t_stack **stack_b)
 	char	*input;
 
 	input = get_next_line(0);
-	while (ft_strcmp(input, "\n") != 0)
+	while (input && ft_strcmp(input, "\n") != 0)
 	{
 		if (ft_strcmp(input, "sa\n") == 0 || ft_strcmp(input, "sb\n") == 0
 			|| ft_strcmp(input, "ss\n") == 0)
