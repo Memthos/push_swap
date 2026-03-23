@@ -1,4 +1,4 @@
-CC=gcc
+CC=cc
 CFLAGS=-Wall -Werror -Wextra
 VPATH=srcs/
 SRCS=parser_utils.c push_swap.c sort_functions.c stacks_operations.c \
