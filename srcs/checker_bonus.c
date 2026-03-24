@@ -6,7 +6,7 @@
 /*   By: mperrine <mperrine@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 12:53:54 by mperrine          #+#    #+#             */
-/*   Updated: 2026/03/09 13:21:59 by mperrine         ###   ########.fr       */
+/*   Updated: 2026/03/24 15:15:08 by mperrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ int	main(int argc, char *argv[])
 	else
 		write(1, "KO\n", 3);
 	clear_stack(stack_a);
+	clear_stack(stack_b);
 }

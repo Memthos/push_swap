@@ -6,7 +6,7 @@
 /*   By: mperrine <mperrine@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:38:35 by mperrine          #+#    #+#             */
-/*   Updated: 2026/03/09 13:38:57 by mperrine         ###   ########.fr       */
+/*   Updated: 2026/03/24 15:14:13 by mperrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ void	read_input(t_stack **stack_a, t_stack **stack_b)
 			|| ft_strcmp(input, "rrb\n") == 0 || ft_strcmp(input, "rrr\n") == 0)
 			rev_rot_operation(input, stack_a, stack_b);
 		else
+		{
+			free(input);
 			error_exit(*stack_a, *stack_b);
+		}
 		free(input);
 		input = get_next_line(0);
 	}
